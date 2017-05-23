@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('ionic-list')
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
