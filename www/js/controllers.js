@@ -27,8 +27,8 @@ app.controller('ListCtrl', function($scope, $ionicListDelegate, $http) {
 
     $scope.removeItem = function(item) {
         console.log('removeItem()\t %o', item);
-        var index = $scope.items.indexOf(item); //define index
-        $http.post(api + 'delete', {index:index}).then(res => {             //call endpoint and promise function
+        // var index = $scope.items.indexOf(item); //define index
+        $http.post(api + 'delete', {id:item.id}).then(res => {             //call endpoint and promise function
             console.log(res);
             getItems();
         });
@@ -36,8 +36,13 @@ app.controller('ListCtrl', function($scope, $ionicListDelegate, $http) {
 
     $scope.reserveItem = function(item) {
         console.log('reserveItem()\t %o', item);
-        item.reserved = true;
-        $ionicListDelegate.closeOptionButtons();
+        var index = $scope.items.indexOf(item); //define index
+        $http.post(api + 'reserve', {id:item.id}).then(res => {             //call endpoint and promise function
+            console.log(res);
+            getItems();
+            $ionicListDelegate.closeOptionButtons();
+        });
+
     };
 
 
